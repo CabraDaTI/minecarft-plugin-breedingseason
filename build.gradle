@@ -1,17 +1,33 @@
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.7.21'
-    id 'application'
+    id 'java'
+    id 'pmd'
 }
 
 group = 'org.cabradati'
-version = '1.0-SNAPSHOT'
+version = '3.0'
+
+jar.destinationDir(file("/server/plugins"))
 
 repositories {
     mavenCentral()
+    maven {
+        name = 'papermc-repo'
+        url = 'https://papermc.io/repo/repository/maven-public/'
+    }
+    maven {
+        name = 'sonatype'
+        url = 'https://oss.sonatype.org/content/groups/public/'
+    }
 }
 
 dependencies {
+    implementation 'io.papermc.paper:paper-api:1.19.2-R0.1-SNAPSHOT'
+
     testImplementation 'org.jetbrains.kotlin:kotlin-test'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.0'
+    testImplementation 'io.papermc.paper:paper-api:1.19.2-R0.1-SNAPSHOT'
+    testImplementation "org.mockito.kotlin:mockito-kotlin:4.0.0"
 }
 
 test {
@@ -19,13 +35,9 @@ test {
 }
 
 compileKotlin {
-    kotlinOptions.jvmTarget = '1.8'
+    kotlinOptions.jvmTarget = '17'
 }
 
 compileTestKotlin {
-    kotlinOptions.jvmTarget = '1.8'
-}
-
-application {
-    mainClassName = 'MainKt'
+    kotlinOptions.jvmTarget = '17'
 }
