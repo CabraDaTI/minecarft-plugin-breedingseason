@@ -28,7 +28,7 @@ class MudancaDeDiaRunnable(
         }
 
         if (diasRestantes >= 1) {
-            server.broadcast(Component.text("restam $diasRestantes dias"))
+            server.broadcast(Component.text("restam $diasRestantes dias para mudança de estação"))
             config.set(App.DIAS_RESTANTES_DA_ESTACAO, diasRestantes)
             plugin.saveConfig()
         }

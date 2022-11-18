@@ -1,5 +1,6 @@
 package org.cabradati.breedingseason.tasks
 
+import net.kyori.adventure.text.Component
 import org.bukkit.Server
 import org.bukkit.configuration.file.FileConfiguration
 import org.bukkit.plugin.java.JavaPlugin
@@ -24,6 +25,8 @@ class TrocaDeEstacaoTask(
         config.set(App.ESTACAO_ATUAL, proximaEstacao.valor)
         config.set(App.DIAS_RESTANTES_DA_ESTACAO, config.getInt(App.DIAS_POR_ESTACAO))
         plugin.saveConfig()
+
+        server.broadcast(Component.text("nova estação - ${proximaEstacao.valor}"))
 
     }
 
