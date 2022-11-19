@@ -1,5 +1,6 @@
 package org.cabradati.breedingseason
 
+import org.bukkit.entity.EntityType
 import org.bukkit.plugin.java.JavaPlugin
 import org.cabradati.breedingseason.events.AnimaisSpawnEvent
 import org.cabradati.breedingseason.events.ColheitaEvent
@@ -13,6 +14,7 @@ class App : JavaPlugin() {
         const val PERIODO_DE_VALIDACAO = "config.ticks"
         const val DIAS_RESTANTES_DA_ESTACAO = "state.days_remaining"
         const val ESTACAO_ATUAL = "state.actual_seasson"
+        const val PREFIXO_SPAWN_ENTITY = "config.seca.spawn."
     }
 
     override fun onEnable() {
@@ -21,6 +23,13 @@ class App : JavaPlugin() {
         config.addDefault(PERIODO_DE_VALIDACAO, 24000)
         config.addDefault(DIAS_RESTANTES_DA_ESTACAO, 30)
         config.addDefault(ESTACAO_ATUAL, EstacaoType.NORMAL.valor)
+
+        EntityType.values()
+            .filter { entityType -> entityType != EntityType.UNKNOWN }
+            .forEach { entityType ->
+                config.addDefault(PREFIXO_SPAWN_ENTITY + entityType, true)
+            }
+
         config.options().copyDefaults(true)
         saveConfig()
 
