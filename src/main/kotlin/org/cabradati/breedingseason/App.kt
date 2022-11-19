@@ -1,6 +1,5 @@
 package org.cabradati.breedingseason
 
-import org.bukkit.Material
 import org.bukkit.plugin.java.JavaPlugin
 import org.cabradati.breedingseason.events.AnimaisSpawnEvent
 import org.cabradati.breedingseason.events.ColheitaEvent
@@ -47,7 +46,6 @@ class App : JavaPlugin() {
             ColheitaEvent(diContainer),
             this
         )
-        Material.WHEAT
 
         super.onEnable()
     }
