@@ -1,6 +1,7 @@
 package org.cabradati.breedingseason
 
 import org.bukkit.plugin.java.JavaPlugin
+import org.cabradati.breedingseason.events.AnimaisSpawnEvent
 import org.cabradati.breedingseason.models.EstacaoType
 import org.cabradati.breedingseason.schedulers.MudancaDeDiaRunnable
 
@@ -33,6 +34,11 @@ class App : JavaPlugin() {
             MudancaDeDiaRunnable(diContainer),
             1,
             config.getLong(PERIODO_DE_VALIDACAO)
+        )
+
+        server.pluginManager.registerEvents(
+            AnimaisSpawnEvent(diContainer),
+            this
         )
 
         super.onEnable()
