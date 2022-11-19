@@ -1,7 +1,9 @@
 package org.cabradati.breedingseason
 
+import org.bukkit.Material
 import org.bukkit.plugin.java.JavaPlugin
 import org.cabradati.breedingseason.events.AnimaisSpawnEvent
+import org.cabradati.breedingseason.events.ColheitaEvent
 import org.cabradati.breedingseason.models.EstacaoType
 import org.cabradati.breedingseason.schedulers.MudancaDeDiaRunnable
 
@@ -40,6 +42,12 @@ class App : JavaPlugin() {
             AnimaisSpawnEvent(diContainer),
             this
         )
+
+        server.pluginManager.registerEvents(
+            ColheitaEvent(diContainer),
+            this
+        )
+        Material.WHEAT
 
         super.onEnable()
     }
