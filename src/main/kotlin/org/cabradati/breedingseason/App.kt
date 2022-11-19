@@ -10,6 +10,8 @@ import org.cabradati.breedingseason.schedulers.MudancaDeDiaRunnable
 class App : JavaPlugin() {
 
     companion object {
+        const val ATIVAR_PLUGIN = "plugin.enabled"
+        const val ATIVAR_DEBUG = "plugin.debug"
         const val DIAS_POR_ESTACAO = "config.duration_in_days"
         const val PERIODO_DE_VALIDACAO = "config.ticks"
         const val DIAS_RESTANTES_DA_ESTACAO = "state.days_remaining"
@@ -19,6 +21,8 @@ class App : JavaPlugin() {
 
     override fun onEnable() {
 
+        config.addDefault(ATIVAR_PLUGIN, true)
+        config.addDefault(ATIVAR_DEBUG, false)
         config.addDefault(DIAS_POR_ESTACAO, 30)
         config.addDefault(PERIODO_DE_VALIDACAO, 24000)
         config.addDefault(DIAS_RESTANTES_DA_ESTACAO, 30)
@@ -39,22 +43,24 @@ class App : JavaPlugin() {
             config
         )
 
-        server.scheduler.runTaskTimerAsynchronously(
-            this,
-            MudancaDeDiaRunnable(diContainer),
-            1,
-            config.getLong(PERIODO_DE_VALIDACAO)
-        )
+        if (config.getBoolean(ATIVAR_PLUGIN)) {
+            server.scheduler.runTaskTimerAsynchronously(
+                this,
+                MudancaDeDiaRunnable(diContainer),
+                1,
+                config.getLong(PERIODO_DE_VALIDACAO)
+            )
 
-        server.pluginManager.registerEvents(
-            AnimaisSpawnEvent(diContainer),
-            this
-        )
+            server.pluginManager.registerEvents(
+                AnimaisSpawnEvent(diContainer),
+                this
+            )
 
-        server.pluginManager.registerEvents(
-            ColheitaEvent(diContainer),
-            this
-        )
+            server.pluginManager.registerEvents(
+                ColheitaEvent(diContainer),
+                this
+            )
+        }
 
         super.onEnable()
     }
