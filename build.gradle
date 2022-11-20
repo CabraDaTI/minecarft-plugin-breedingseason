@@ -7,7 +7,7 @@ plugins {
 group = 'org.cabradati'
 version = '3.0'
 
-jar.destinationDir(file("/server/plugins"))
+jar.destinationDir(file("./server/plugins"))
 
 repositories {
     mavenCentral()
@@ -40,4 +40,22 @@ compileKotlin {
 
 compileTestKotlin {
     kotlinOptions.jvmTarget = '17'
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = "https://maven.pkg.github.com/CabraDaTI/minecraft-plugin-holdentities"
+            credentials {
+                username = System.getenv("USERNAME")
+                password = System.getenv("TOKEN")
+            }
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
+        }
+    }
 }
