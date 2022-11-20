@@ -44,6 +44,11 @@ class App : JavaPlugin() {
         )
 
         if (config.getBoolean(ATIVAR_PLUGIN)) {
+
+            val diasRestantes = config.getInt(DIAS_RESTANTES_DA_ESTACAO) + 1
+            config.set(DIAS_RESTANTES_DA_ESTACAO, diasRestantes)
+            saveConfig()
+
             server.scheduler.runTaskTimerAsynchronously(
                 this,
                 MudancaDeDiaRunnable(diContainer),
