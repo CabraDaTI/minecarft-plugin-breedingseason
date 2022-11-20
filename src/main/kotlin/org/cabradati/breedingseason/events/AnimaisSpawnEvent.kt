@@ -16,10 +16,9 @@ class AnimaisSpawnEvent(private val diContainer: DIContainer) : Listener {
 
         if (event.entity !is Animals) return
 
-        if (
-            diContainer.config.getString(App.ESTACAO_ATUAL) == EstacaoType.SECA.valor &&
-            !diContainer.config.getBoolean(App.PREFIXO_SPAWN_ENTITY + event.entityType)
-        ) {
+        if (diContainer.config.getString(App.ESTACAO_ATUAL) != EstacaoType.SECA.valor) return
+
+        if (!diContainer.config.getBoolean(App.PREFIXO_SPAWN_ENTITY + event.entityType)) {
             event.isCancelled = true
         }
 
