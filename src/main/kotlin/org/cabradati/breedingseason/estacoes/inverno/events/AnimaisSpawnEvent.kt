@@ -1,4 +1,4 @@
-package org.cabradati.breedingseason.events
+package org.cabradati.breedingseason.estacoes.inverno.events
 
 import org.bukkit.entity.Animals
 import org.bukkit.event.EventHandler
@@ -16,9 +16,9 @@ class AnimaisSpawnEvent(private val diContainer: DIContainer) : Listener {
 
         if (event.entity !is Animals) return
 
-        if (diContainer.config.getString(App.ESTACAO_ATUAL) != EstacaoType.SECA.valor) return
+        if (diContainer.config.getString(App.ESTACAO_ATUAL) != EstacaoType.INVERNO.valor) return
 
-        if (!diContainer.config.getBoolean(App.PREFIXO_SPAWN_ENTITY + event.entityType)) {
+        if (!diContainer.config.getBoolean(App.ESTACAO_INVERNO_PREFIXO_SPAWN + event.entityType)) {
             event.isCancelled = true
         }
 

@@ -1,4 +1,4 @@
-package org.cabradati.breedingseason.events
+package org.cabradati.breedingseason.estacoes.inverno.events
 
 import org.bukkit.block.Block
 import org.bukkit.block.data.Ageable
@@ -17,7 +17,7 @@ class ColheitaEvent(private val diContainer: DIContainer) : Listener {
     fun onColher(event: BlockGrowEvent) {
         if (isAgeable(event.block)) return
 
-        if (diContainer.config.getString(App.ESTACAO_ATUAL) == EstacaoType.SECA.valor) {
+        if (diContainer.config.getString(App.ESTACAO_ATUAL) == EstacaoType.INVERNO.valor) {
             event.isCancelled = true
         }
     }
@@ -26,7 +26,7 @@ class ColheitaEvent(private val diContainer: DIContainer) : Listener {
     fun onFertilizar(event: BlockFertilizeEvent) {
         if (isAgeable(event.block)) return
 
-        if (diContainer.config.getString(App.ESTACAO_ATUAL) == EstacaoType.SECA.valor) {
+        if (diContainer.config.getString(App.ESTACAO_ATUAL) == EstacaoType.INVERNO.valor) {
             event.isCancelled = true
         }
     }

@@ -1,11 +1,10 @@
-package org.cabradati.breedingseason.schedulers
+package org.cabradati.breedingseason.time
 
 import net.kyori.adventure.text.Component
 import org.cabradati.breedingseason.App
 import org.cabradati.breedingseason.DIContainer
-import org.cabradati.breedingseason.tasks.TrocaDeEstacaoTask
 
-class MudancaDeDiaRunnable(
+class MudancaDeDiaScheduler(
     private val diContainer: DIContainer
 ) : Runnable {
 
@@ -18,7 +17,7 @@ class MudancaDeDiaRunnable(
 
 
         if (diasRestantes < 0) {
-            server.scheduler.runTaskAsynchronously(plugin, TrocaDeEstacaoTask(plugin, server, config))
+            server.scheduler.runTaskAsynchronously(plugin, TrocaDeEstacaoTask(diContainer))
         }
 
         if (diasRestantes == 0) {
