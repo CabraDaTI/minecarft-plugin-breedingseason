@@ -4,5 +4,5 @@ import org.bukkit.block.Block
 import org.bukkit.block.data.Ageable
 
 fun Block.isAgeable(): Boolean {
-    return this is Ageable
+    return this.blockData is Ageable
 }

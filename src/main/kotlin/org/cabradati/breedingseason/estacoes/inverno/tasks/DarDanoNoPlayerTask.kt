@@ -9,7 +9,6 @@ class DarDanoNoPlayerTask(
 
     override fun run() {
         player.damage(quantidade)
-        player.sendMessage("estou com frio... Preciso vestir algo...")
     }
 
 }

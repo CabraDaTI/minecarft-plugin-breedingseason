@@ -7,15 +7,18 @@ import org.bukkit.event.block.BlockFertilizeEvent
 import org.cabradati.breedingseason.App
 import org.cabradati.breedingseason.DIContainer
 import org.cabradati.breedingseason.models.EstacaoType
+import org.cabradati.breedingseason.utils.extensions.SistemaEvent
 import org.cabradati.breedingseason.utils.extensions.isAgeable
 
-class FertilizacaoEvent(private val diContainer: DIContainer) : Listener {
+class FertilizacaoEvent(
+    diContainer: DIContainer
+) : Listener, SistemaEvent<BlockFertilizeEvent> {
 
-    @EventHandler(priority = EventPriority.NORMAL)
-    fun onFertilizar(event: BlockFertilizeEvent) {
-        if (event.block.isAgeable()) return
+    private val parametroEstacaoAtual = diContainer.config.getString(App.ESTACAO_ATUAL)
 
-        if (diContainer.config.getString(App.ESTACAO_ATUAL) == EstacaoType.INVERNO.valor) {
+    @EventHandler(priority = EventPriority.LOW)
+    override fun on(event: BlockFertilizeEvent) {
+        if (event.block.isAgeable() && parametroEstacaoAtual == EstacaoType.INVERNO.valor) {
             event.isCancelled = true
         }
     }

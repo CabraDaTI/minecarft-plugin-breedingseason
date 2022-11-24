@@ -154,12 +154,12 @@ world-settings:
       sapling-modifier: 100
       beetroot-modifier: 100
       carrot-modifier: 100
-      potato-modifier: 100
-      wheat-modifier: 100
+      potato-modifier: 2000
+      wheat-modifier: 2000
       netherwart-modifier: 100
       vine-modifier: 100
       cocoa-modifier: 100
-      bamboo-modifier: 100
+      bamboo-modifier: 2000
       sweetberry-modifier: 100
       kelp-modifier: 100
       twistingvines-modifier: 100
