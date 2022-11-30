@@ -1,6 +1,6 @@
 author: Erick Lemos
 name: BreedingSeason
-version: 10.2
+version: 10.3
 main: org.cabradati.breedingseason.App
 api-version: 1.19
 load: STARTUP

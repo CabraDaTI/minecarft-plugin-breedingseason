@@ -18,7 +18,9 @@ class CancelarPescaEvent(
     @EventHandler(priority = EventPriority.NORMAL)
     override fun on(event: PlayerFishEvent) {
         if (parametroEstacaoAtual != EstacaoType.INVERNO.valor) return
-        event.isCancelled = true
+        if (event.state == PlayerFishEvent.State.BITE) {
+            event.isCancelled = true
+        }
     }
 
 }
