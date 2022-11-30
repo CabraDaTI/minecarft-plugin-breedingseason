@@ -2,6 +2,7 @@ package org.cabradati.breedingseason.estacoes.inverno
 
 import org.bukkit.entity.EntityType
 import org.cabradati.breedingseason.DIContainer
+import org.cabradati.breedingseason.estacoes.inverno.events.CancelarPescaEvent
 import org.cabradati.breedingseason.estacoes.inverno.events.CancelarSpawnEvent
 import org.cabradati.breedingseason.estacoes.inverno.events.ColheitaEvent
 import org.cabradati.breedingseason.estacoes.inverno.events.FertilizacaoEvent
@@ -51,6 +52,11 @@ class EstacaoInvernoContainer(private val diContainer: DIContainer) : SistemaCon
 
             server.pluginManager.registerEvents(
                 FertilizacaoEvent(diContainer),
+                plugin
+            )
+
+            server.pluginManager.registerEvents(
+                CancelarPescaEvent(diContainer),
                 plugin
             )
 
